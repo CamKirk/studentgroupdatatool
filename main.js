@@ -1,4 +1,4 @@
-let createJSON = require('./utils/csvwriter.js');
+let createJSON = require('./util/csvwriter.js');
 let mongoose = require('mongoose');
 let dotenv = require('dotenv');
 let models = require('./models');
@@ -6,11 +6,11 @@ let path = require('path');
 let fs = require('fs');
 
 
-dotenv.config()
+dotenv.config();
 mongoose.connect(process.env.MONGODB_URI, (err) => {
     if (err) throw err;
-    console.log('database connected')
-    dataPush()
+    console.log('database connected');
+    dataPush();
 });
 
 function dataPush() {
@@ -24,31 +24,17 @@ function dataPush() {
             if (err) throw err;
 
             data = JSON.parse(data);
-            // console.log(data);
-            data.forEach((group) => {
-                group.members.forEach((member) => {
-                    //rewrite to push to groups instead of students
-
-
-                    // models.Student.findOneAndUpdate({
-                    //     firstName: member
-                    // }, {
-                    //     $push: {
-                    //         groups: {
-                    //             week: week,
-                    //             groupNumber: 
-                    //         }
-                    //     }
-                    //     },(err,docs)=>{
-                    //         if (err) throw err;
-                    //         console.log(docs);
-                            
-                    //     })
-                    
-                })
-            })
-
-        })
-    })
+            let dataMap = data.map((group)=>{ 
+                group.week = week;
+                return group;    
+            });    
+            
+            models.Group.insertMany(dataMap, (err, docs)=>{
+                if (err) throw err;              
+                console.log('groups inserted');
+                
+            });
+        });
+    });
 }
 

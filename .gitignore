@@ -2,3 +2,5 @@
 **/node_modules
 .package-lock.json
 studentnames.json
+groupdata/csv/**
+groupdata/json/**
