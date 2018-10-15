@@ -21,7 +21,7 @@ function createJSON(csvFile, cb) {
                 for(let member in group){
                     
                     if(member.slice(0,3)==='Mem'){
-                        groupObj.members.push(group[member])
+                        groupObj.members.push(group[member].toLowerCase());
                     }
                 }
                 restructuredArray.push(groupObj);

@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 
 let group = new Schema({
     "groupNumber": String,
-    "members": String,
+    "members": [String],
     "week":Number
 });
 

@@ -6,7 +6,7 @@ let student = new Schema({
     "lastName": String,
     "fName": String,
     "lName": String,
-    "groups": Array
+    "groups": [{type: Schema.Types.ObjectId, ref:"Group"}]
 });
 
 module.exports = mongoose.model('student',student);

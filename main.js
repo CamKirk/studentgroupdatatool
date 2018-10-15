@@ -4,7 +4,7 @@ let dotenv = require('dotenv');
 let models = require('./models');
 let path = require('path');
 let fs = require('fs');
-
+let testStudentsNames = require('./test/nametest.js');
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URI, (err) => {
@@ -36,5 +36,7 @@ function dataPush() {
             });
         });
     });
+
+    testStudentsNames();
 }
 
