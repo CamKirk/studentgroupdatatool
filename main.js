@@ -28,7 +28,7 @@ function dataPush() {
                 group.week = week;
                 return group;    
             });    
-            
+            //change to an upsert later
             models.Group.insertMany(dataMap, (err, docs)=>{
                 if (err) throw err;              
                 console.log('groups inserted');
